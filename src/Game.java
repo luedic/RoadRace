@@ -33,6 +33,7 @@ public class Game implements Runnable{
 	public static void main(String[] args) {
 		Game g = new Game();
 		Car c = new Car(100,100);
+		c.loadImage();
 		g.getJf().add(c);
 		g.run();
 		
