@@ -14,6 +14,8 @@ public class Car extends JPanel{
 	private int width = 56;
 	private int height = 24;
 	
+	
+	
 	public Car(int locX,int locY) {
 		this.locX = locX;
 		this.locY = locY;
@@ -32,7 +34,7 @@ public class Car extends JPanel{
 		g.drawRect(locX, locY, width, height);
 		g.drawImage(sprite ,locX, locY, null);
 	}
-	
+
 	public int getLocX() {
 		return locX;
 	}

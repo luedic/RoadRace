@@ -5,25 +5,50 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
+import javafx.scene.input.KeyEvent;
+
 public class Game implements Runnable{
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	double width = screenSize.getWidth();
 	double height = screenSize.getHeight();
 	public JFrame jf = new JFrame();
+	KeyInput ki = new KeyInput(this);
 	
+	private boolean up = false;
+	private boolean down = false;
+	private boolean right = false;
+	private boolean left = false;
 	
 	public Game() {
 		new Window((int)width+1, (int)height+1,"lol", jf);
+		jf.addKeyListener(ki);
+		jf.setFocusable(true);
 	}
-	
-	
+		
 	public void run() {
-		int i = 0;
-		while (true) {
+		Car c = new Car(0,0);
+		int i = 0; 
+		this.getJf().add(c);
+		while (true) { //Gameloop
 			try {
-				Thread.sleep(20); //50x per second 
-				System.out.println(i);
-				i++;
+				int x = c.getLocX();
+				int y = c.getLocY();
+				if (this.isUp()) {
+					c.setLocY(y-5);
+				}
+				if (this.isDown()) {
+					c.setLocY(y+5);
+				}
+				if (this.isRight()) {
+					c.setLocX(x+5);
+				}
+				if (this.isLeft()) {
+					c.setLocX(x-5);
+				}
+
+//				System.out.println("up");
+				Thread.sleep(20); //50x per second
+				jf.repaint();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -32,11 +57,7 @@ public class Game implements Runnable{
 	
 	public static void main(String[] args) {
 		Game g = new Game();
-		Car c = new Car(100,100);
-		c.loadImage();
-		g.getJf().add(c);
 		g.run();
-		
 	}
 
 
@@ -67,6 +88,45 @@ public class Game implements Runnable{
 
 	public void setHeight(double height) {
 		this.height = height;
+	}
+	
+	public boolean isUp() {
+		return up;
+	}
+
+
+	public void setUp(boolean up) {
+		this.up = up;
+	}
+
+
+	public boolean isDown() {
+		return down;
+	}
+
+
+	public void setDown(boolean down) {
+		this.down = down;
+	}
+
+
+	public boolean isRight() {
+		return right;
+	}
+
+
+	public void setRight(boolean right) {
+		this.right = right;
+	}
+
+
+	public boolean isLeft() {
+		return left;
+	}
+
+
+	public void setLeft(boolean left) {
+		this.left = left;
 	}
 
 	
