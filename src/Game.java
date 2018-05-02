@@ -27,6 +27,7 @@ public class Game implements Runnable{
 		
 	public void run() {
 		Car c = new Car(0,0);
+//		c.loadImage();
 		int i = 0; 
 		this.getJf().add(c);
 		while (true) { //Gameloop
