@@ -19,9 +19,6 @@ public class Car extends JPanel {
 		this.locY = locY;
 	}
 
-	public void loadImage() {
-
-	}
 
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);

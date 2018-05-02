@@ -8,6 +8,7 @@ public class Window {
 		jf.setPreferredSize(new Dimension(width, height));
 		jf.setMaximumSize(new Dimension(width, height));
 		jf.setMinimumSize(new Dimension(width, height));
+		jf.setTitle(title);
 		
 		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
