@@ -15,7 +15,7 @@ public class KeyInput extends KeyAdapter{
 		if (key == KeyEvent.VK_UP) {
 			game.setUp(true);
 		}
-		if (key == KeyEvent.VK_DOWN) {
+		else if (key == KeyEvent.VK_DOWN) {
 			game.setDown(true);
 		}
 		if (key == KeyEvent.VK_RIGHT) {
