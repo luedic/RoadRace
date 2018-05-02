@@ -28,23 +28,24 @@ public class Game implements Runnable{
 	public void run() {
 		Car c = new Car(0,0);
 //		c.loadImage();
-		int i = 0; 
 		this.getJf().add(c);
 		while (true) { //Gameloop
 			try {
 				int x = c.getLocX();
 				int y = c.getLocY();
+				int t = c.getTurn();
+				
 				if (this.isUp()) {
-					c.setLocY(y-5);
-				}
-				if (this.isDown()) {
-					c.setLocY(y+5);
-				}
-				if (this.isRight()) {
 					c.setLocX(x+5);
 				}
-				if (this.isLeft()) {
+				if (this.isDown()) {
 					c.setLocX(x-5);
+				}
+				if (this.isRight()) {
+					c.setTurn(t+1);
+				}
+				if (this.isLeft()) {
+					c.setTurn(t-1);
 				}
 
 //				System.out.println("up");
@@ -55,7 +56,7 @@ public class Game implements Runnable{
 			}
 		}
 	}
-	
+
 	public static void main(String[] args) {
 		Game g = new Game();
 		g.run();
