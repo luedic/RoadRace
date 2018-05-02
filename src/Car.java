@@ -9,6 +9,8 @@ public class Car extends JPanel{
 	private int locX;
 	private int locY;
 	
+	
+	
 	public Car(int locX,int locY) {
 		this.locX = locX;
 		this.locY = locY;
@@ -19,7 +21,7 @@ public class Car extends JPanel{
 		g.setColor(Color.RED);
 		g.drawRect(locX, locY, 56, 24);
 	}
-	
+
 	public int getLocX() {
 		return locX;
 	}
