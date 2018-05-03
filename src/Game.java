@@ -20,14 +20,14 @@ public class Game implements Runnable{
 	private boolean left = false;
 	
 	public Game() {
-		new Window((int)width+1, (int)height+1,"lol", jf);
+		new Window((int)width+1, (int)height+1,"RoadRace", jf);
 		jf.addKeyListener(ki);
 		jf.setFocusable(true);
 	}
-		
+
 	public void run() {
 		Car c = new Car(0,0);
-//		c.loadImage();
+		int i = 0; 
 		this.getJf().add(c);
 		while (true) { //Gameloop
 			try {
@@ -48,7 +48,6 @@ public class Game implements Runnable{
 					c.setTurn(t-1);
 				}
 
-//				System.out.println("up");
 				Thread.sleep(20); //50x per second
 				jf.repaint();
 			} catch (InterruptedException e) {
@@ -59,7 +58,7 @@ public class Game implements Runnable{
 
 	public static void main(String[] args) {
 		Game g = new Game();
-		g.run();
+		Menu m = new Menu(1000,666,g);	
 	}
 
 

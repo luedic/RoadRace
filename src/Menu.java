@@ -1,32 +1,57 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.GridLayout;
+import java.awt.Image;
+import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class Menu {
+public class Menu extends JFrame{
+	private int width;
+	private int height;
+	
 
-	public Menu (int width, int height, JFrame jf ) {
-		jf.setSize(width, height);
-		jf.setMaximumSize(new Dimension(width, height));
-		jf.setMinimumSize(new Dimension(width, height));
-		
-		jf.setResizable(false);
-		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		jf.setLocationRelativeTo(null);
-		jf.setVisible(true);
-		jf.setLayout(new BorderLayout());
+
+
+	public Menu (int width, int height, Game g) {
+		this.width=width;
+		this.height=height;
+		this.setSize(width, height);
+		this.setTitle("Menu");
+		this.setVisible(true);
+		this.setResizable(false);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		BackgroundMenu bm = new BackgroundMenu();
+		bm.setLayout(null);
+		addButtons(bm,g);
+		this.add(bm);
 	}
-	public void addButtons(JFrame jf,int width, int height) {
-		JButton buttonS = new JButton("Auto auswählen");
-		jf.add(buttonS);
-		buttonS.setSize(width/10,height/12);
-		buttonS.setLocation((int)((width/2)-(buttonS.getWidth()/2)),(int)((height/2)-(buttonS.getWidth()/2)));
-		
+	
+	
+	public void addButtons(JPanel panel,Game g) {
+		JButton button = new JButton("Starte");
+		button.setSize(100,50);
+		button.setLocation(450,308);
+		button.addActionListener(new ButtonListener());
+		panel.add(button);
 	}
-	public static void main(String[] args) {
-		JFrame jf = new JFrame();
-		Menu menu = new Menu(1920,1080, jf);
-		menu.addButtons(jf,1920,1080);
+		
+	public int getWidth() {
+		return width;
+	}
+	
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	
+	public int getHeight() {
+		return height;
+	}
+	
+	public void setHeight(int height) {
+		this.height = height;
 	}
 }
