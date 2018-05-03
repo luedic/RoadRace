@@ -33,9 +33,9 @@ public class Menu extends JFrame{
 	
 	public void addButtons(JPanel panel) {
 		JButton button = new JButton("Starte");
+		button.addActionListener(new ButtonListener(this));
 		button.setSize(100,50);
 		button.setLocation(450,308);
-		button.addActionListener(new ButtonListener(this));
 		panel.add(button);
 	}
 		

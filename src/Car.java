@@ -1,10 +1,8 @@
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
-import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -16,20 +14,51 @@ public class Car extends JPanel {
 	private int turn = 0;
 	private int width = 56;
 	private int height = 24;
+	Rectangle[] arrayWall = new Rectangle[] { 
+			new Rectangle(147, 181, 568, 39), 
+			new Rectangle(611, 221, 106, 671),
+			new Rectangle(720, 812, 711, 87), 
+			new Rectangle(1197, 194, 74, 604), 
+			new Rectangle(1274, 205, 353, 58),
+			new Rectangle(23, 432, 418, 64), 
+			new Rectangle(902, 14, 86, 642), 
+			new Rectangle(1426, 502, 488, 54) };
 
 	public Car(float locX, float locY) {
 		this.locX = locX;
 		this.locY = locY;
 	}
-
-
 	public void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D)g;
+		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponents(g2d);
+		System.out.println("test");
+		ImageIcon ic = new ImageIcon("images/TestStrecke2.png");
+		Image bg = ic.getImage();
+		g.drawImage(bg, 0, 0, null);
 		ImageIcon i = new ImageIcon("images/mercedes.png");
 		sprite = i.getImage();
-		g2d.rotate(Math.toRadians(turn),locX, locY);
-		g2d.drawImage(sprite, (int)locX, (int)locY, null);
+		g.drawRect((int) locX+height/2, (int) locY, height, height);
+		g2d.rotate(Math.toRadians(turn), locX+width/2, locY+height/2);
+		g2d.drawImage(sprite, (int) locX, (int) locY, null);
+	}
+
+	public void checkColision() {
+		Rectangle hitBox = this.getHitBox();
+		if (arrayWall != null) {
+			for (Rectangle wall : arrayWall) {
+				if(wall!=null) {
+					if (hitBox.intersects(wall)) {
+						System.out.println("KOLLLLLISSSSSIIIIONNNNNNNNN");
+					} else {
+						System.out.println("NOOOOOOOOOOOOOOOOOOOOOO KOLLLLLLLIIIIIIIIIISSSSSSSSSIIIIION");
+					}
+				}
+			}
+		}
+	}
+
+	public Rectangle getHitBox() {
+		return new Rectangle((int) locX-height, (int) locY, height, height);
 	}
 
 	public float getLocX() {

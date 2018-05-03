@@ -32,10 +32,11 @@ public class Game implements Runnable{
 //		jaf.setSize(500, 500);
 //		jaf.setVisible(true);
 //		jaf.add(c);
-		Car c = new Car((int)width/2,(int)height/2);
+		Car c = new Car(50,50);
 		Camera cam = new Camera(0,0);
+		BackgroundWindow bw = new BackgroundWindow();
+		jf.add(bw);
 		jf.add(c);
-		
 		while (true) { //Gameloop
 			try {
 				float x = c.getLocX();
@@ -139,8 +140,8 @@ public class Game implements Runnable{
 					}
 				}
 				Thread.sleep(10); //100x per second
-
 				cam.setCamera(c,jf);
+				c.checkColision();
 				jf.repaint();
 			} catch (InterruptedException e) {
 				e.printStackTrace();

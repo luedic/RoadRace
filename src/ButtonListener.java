@@ -9,13 +9,13 @@ public class ButtonListener implements ActionListener {
 	public ButtonListener(Menu m) {
 		menu = m;
 	}
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Starte")) {
 			menu.dispose();
 			Game game = new Game();
 			Thread t = new Thread(game);
-			System.out.println("testlol");
 			t.start();
 		}
 	}
