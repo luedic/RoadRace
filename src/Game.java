@@ -28,7 +28,7 @@ public class Game implements Runnable{
 	}
 	
 	public void run() {
-		Car c = new Car(-25,-10);
+		Car c = new Car(300,300);
 //		JFrame jaf = new JFrame();
 //		jaf.setSize(500, 500);
 //		jaf.setVisible(true);
@@ -37,14 +37,90 @@ public class Game implements Runnable{
 		
 		while (true) { //Gameloop
 			try {
-				int x = c.getLocX();
-				int y = c.getLocY();
+				float x = c.getLocX();
+				float y = c.getLocY();
 				int t = c.getTurn();
+				float value = 0;
 				if (this.isUp()) {
-					c.setLocX(x+5);
+					if(t <= 90) {
+						if(t<0) {
+							c.setTurn(360);
+						}
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						c.setLocX(x+5-value);
+						c.setLocY(y+value);
+					}
+					if(t <= 180 && t > 90) {
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						value -= 5;
+						c.setLocX(x-value);
+						c.setLocY(y+5-value);
+					}
+					if(t <= 270 && t > 180) {
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						value -= 10;
+						c.setLocX(x-5+value);
+						c.setLocY(y-value);
+					}
+					if(t > 270) {
+						if(t>360) {
+							c.setTurn(0);
+						}
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						value -= 15;
+						c.setLocX(x+value);
+						c.setLocY(y-5+value);
+						
+					}
+					
 				}
 				if (this.isDown()) {
-					c.setLocX(x-5);
+					if(t <= 90) {
+						if(t<0) {
+							c.setTurn(360);
+						}
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						c.setLocX(x-5+value);
+						c.setLocY(y-value);
+					}
+					if(t <= 180 && t > 90) {
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						value -= 5;
+						c.setLocX(x+value);
+						c.setLocY(y-5+value);
+					}
+					if(t <= 270 && t > 180) {
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						value -= 10;
+						c.setLocX(x+5-value);
+						c.setLocY(y+value);
+					}
+					if(t > 270) {
+						if(t>360) {
+							c.setTurn(0);
+						}
+						for (int i = 0; i< t; i++) {
+							value += 0.055555555;
+						}
+						value -= 15;
+						c.setLocX(x-value);
+						c.setLocY(y+5-value);
+						
+					}
 				}
 				if (this.isRight()) {
 					c.setTurn(t+2);
@@ -53,7 +129,7 @@ public class Game implements Runnable{
 					c.setTurn(t-2);
 				}
 
-				Thread.sleep(20); //50x per second
+				Thread.sleep(10); //50x per second
 				jf.repaint();
 			} catch (InterruptedException e) {
 				e.printStackTrace();
@@ -140,3 +216,4 @@ public class Game implements Runnable{
 
 	
 }
+

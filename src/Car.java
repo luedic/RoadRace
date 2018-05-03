@@ -11,13 +11,13 @@ import javax.swing.JPanel;
 
 public class Car extends JPanel {
 	private Image sprite;
-	private int locX;
-	private int locY;
+	private float locX;
+	private float locY;
 	private int turn = 0;
 	private int width = 56;
 	private int height = 24;
 
-	public Car(int locX, int locY) {
+	public Car(float locX, float locY) {
 		this.locX = locX;
 		this.locY = locY;
 	}
@@ -29,22 +29,22 @@ public class Car extends JPanel {
 		ImageIcon i = new ImageIcon("images/bugatti.png");
 		sprite = i.getImage();
 		g2d.rotate(Math.toRadians(turn),locX, locY);
-		g2d.drawImage(sprite, locX, locY, null);
+		g2d.drawImage(sprite, (int)locX, (int)locY, null);
 	}
 
-	public int getLocX() {
+	public float getLocX() {
 		return locX;
 	}
 
-	public void setLocX(int locX) {
-		this.locX = locX;
+	public void setLocX(float f) {
+		this.locX = f;
 	}
 
-	public int getLocY() {
+	public float getLocY() {
 		return locY;
 	}
 
-	public void setLocY(int locY) {
+	public void setLocY(float locY) {
 		this.locY = locY;
 	}
 
