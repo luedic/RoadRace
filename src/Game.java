@@ -28,11 +28,8 @@ public class Game implements Runnable{
 	}
 	
 	public void run() {
-		Car c = new Car(-25,-10);
-//		JFrame jaf = new JFrame();
-//		jaf.setSize(500, 500);
-//		jaf.setVisible(true);
-//		jaf.add(c);
+		Car c = new Car(960,540);
+		Camera cam = new Camera(0,0);
 		jf.add(c);
 		
 		while (true) { //Gameloop
@@ -52,7 +49,7 @@ public class Game implements Runnable{
 				if (this.isLeft()) {
 					c.setTurn(t-2);
 				}
-
+				cam.setCamera(c,jf);
 				Thread.sleep(20); //50x per second
 				jf.repaint();
 			} catch (InterruptedException e) {
