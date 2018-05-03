@@ -13,6 +13,6 @@ public class Window {
 		jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setLocationRelativeTo(null);
-		jf.setVisible(true);
+	//	jf.setVisible(true);
 	}
 }
