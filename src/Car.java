@@ -13,14 +13,8 @@ public class Car extends JPanel {
 	private int locY;
 	private int width = 56;
 	private int height = 24;
-<<<<<<< HEAD
-		
-	
-	public Car(int locX,int locY) {
-=======
 
 	public Car(int locX, int locY) {
->>>>>>> 04ee234178c8d9573ac5c0e522da186e6233d38a
 		this.locX = locX;
 		this.locY = locY;
 	}
