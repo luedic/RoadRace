@@ -58,7 +58,7 @@ public class Car extends JPanel {
 	}
 
 	public Rectangle getHitBox() {
-		return new Rectangle((int) locX-height, (int) locY, height, height);
+		return new Rectangle((int) locX+height/2, (int) locY, height, height);
 	}
 
 	public float getLocX() {
