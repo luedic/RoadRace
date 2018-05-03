@@ -33,17 +33,19 @@ public class Game implements Runnable{
 			try {
 				int x = c.getLocX();
 				int y = c.getLocY();
+				int t = c.getTurn();
+				
 				if (this.isUp()) {
-					c.setLocY(y-5);
-				}
-				if (this.isDown()) {
-					c.setLocY(y+5);
-				}
-				if (this.isRight()) {
 					c.setLocX(x+5);
 				}
-				if (this.isLeft()) {
+				if (this.isDown()) {
 					c.setLocX(x-5);
+				}
+				if (this.isRight()) {
+					c.setTurn(t+1);
+				}
+				if (this.isLeft()) {
+					c.setTurn(t-1);
 				}
 
 				Thread.sleep(20); //50x per second
