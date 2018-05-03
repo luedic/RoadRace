@@ -10,7 +10,7 @@ public class Window {
 		jf.setMinimumSize(new Dimension(width, height));
 		jf.setTitle(title);
 		
-		jf.setResizable(false);
+		//jf.setResizable(false);
 		jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		jf.setLocationRelativeTo(null);
 	//	jf.setVisible(true);
