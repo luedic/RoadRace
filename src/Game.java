@@ -11,7 +11,7 @@ public class Game implements Runnable{
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	double width = screenSize.getWidth();
 	double height = screenSize.getHeight();
-	public JFrame jf = new JFrame();
+	public JFrame jf;
 	KeyInput ki = new KeyInput(this);
 	
 	private boolean up = false;
@@ -20,21 +20,26 @@ public class Game implements Runnable{
 	private boolean left = false;
 	
 	public Game() {
+		jf = new JFrame("RoadRace");
 		new Window((int)width+1, (int)height+1,"RoadRace", jf);
 		jf.addKeyListener(ki);
 		jf.setFocusable(true);
+		jf.setVisible(true);
 	}
-
+	
 	public void run() {
-		Car c = new Car(0,0);
-		int i = 0; 
-		this.getJf().add(c);
+		Car c = new Car(-25,-10);
+//		JFrame jaf = new JFrame();
+//		jaf.setSize(500, 500);
+//		jaf.setVisible(true);
+//		jaf.add(c);
+		jf.add(c);
+		
 		while (true) { //Gameloop
 			try {
 				int x = c.getLocX();
 				int y = c.getLocY();
 				int t = c.getTurn();
-				
 				if (this.isUp()) {
 					c.setLocX(x+5);
 				}
@@ -57,17 +62,13 @@ public class Game implements Runnable{
 	}
 	
 	public void startGame() {
-		Game g = new Game();
-		g.run();
+		this.run();
 	}
 	
 	public static void main(String[] args) {
 		Menu m = new Menu(1000,666);
-		Game g = new Game();
-		g.run();
 		
 	}
-
 
 	public JFrame getJf() {
 		return jf;
