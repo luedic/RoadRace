@@ -42,10 +42,10 @@ public class Game implements Runnable{
 					c.setLocX(x-5);
 				}
 				if (this.isRight()) {
-					c.setTurn(t+1);
+					c.setTurn(t+2);
 				}
 				if (this.isLeft()) {
-					c.setTurn(t-1);
+					c.setTurn(t-2);
 				}
 
 				Thread.sleep(20); //50x per second
@@ -63,6 +63,8 @@ public class Game implements Runnable{
 	
 	public static void main(String[] args) {
 		Menu m = new Menu(1000,666);
+		Game g = new Game();
+		g.run();
 		
 	}
 
