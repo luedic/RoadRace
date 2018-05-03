@@ -32,7 +32,7 @@ public class Game implements Runnable{
 //		jaf.setSize(500, 500);
 //		jaf.setVisible(true);
 //		jaf.add(c);
-		Car c = new Car(960,540);
+		Car c = new Car((int)width/2,(int)height/2);
 		Camera cam = new Camera(0,0);
 		jf.add(c);
 		
@@ -78,10 +78,8 @@ public class Game implements Runnable{
 						}
 						value -= 15;
 						c.setLocX(x+value);
-						c.setLocY(y-5+value);
-						
+						c.setLocY(y-5+value);	
 					}
-					
 				}
 				if (this.isDown()) {
 					if(t <= 90) {
@@ -120,16 +118,27 @@ public class Game implements Runnable{
 						value -= 15;
 						c.setLocX(x-value);
 						c.setLocY(y+5-value);
-						
 					}
 				}
 				if (this.isRight()) {
 					c.setTurn(t+2);
+					if(t<0) {
+						c.setTurn(360);
+					}
+					if(t>360) {
+						c.setTurn(0);
+					}
 				}
 				if (this.isLeft()) {
 					c.setTurn(t-2);
+					if(t<0) {
+						c.setTurn(360);
+					}
+					if(t>360) {
+						c.setTurn(0);
+					}
 				}
-				Thread.sleep(10); //50x per second
+				Thread.sleep(10); //100x per second
 
 				cam.setCamera(c,jf);
 				jf.repaint();
