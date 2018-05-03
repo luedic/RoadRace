@@ -120,7 +120,6 @@ public class Game implements Runnable{
 						value -= 15;
 						c.setLocX(x-value);
 						c.setLocY(y+5-value);
-						
 					}
 				}
 				if (this.isRight()) {
@@ -129,7 +128,7 @@ public class Game implements Runnable{
 				if (this.isLeft()) {
 					c.setTurn(t-2);
 				}
-				Thread.sleep(10); //50x per second
+				Thread.sleep(10); //100x per second
 
 				cam.setCamera(c,jf);
 				jf.repaint();

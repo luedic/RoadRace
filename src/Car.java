@@ -26,7 +26,7 @@ public class Car extends JPanel {
 	public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D)g;
 		super.paintComponents(g2d);
-		ImageIcon i = new ImageIcon("images/bugatti.png");
+		ImageIcon i = new ImageIcon("images/mercedes.png");
 		sprite = i.getImage();
 		g2d.rotate(Math.toRadians(turn),locX, locY);
 		g2d.drawImage(sprite, (int)locX, (int)locY, null);
