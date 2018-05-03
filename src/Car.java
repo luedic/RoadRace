@@ -13,6 +13,8 @@ public class Car extends JPanel {
 	private Image sprite;
 	private float locX;
 	private float locY;
+
+
 	private int turn = 0;
 	private int width = 56;
 	private int height = 24;
@@ -28,9 +30,10 @@ public class Car extends JPanel {
 		super.paintComponents(g2d);
 		ImageIcon i = new ImageIcon("images/bugatti.png");
 		sprite = i.getImage();
-		g2d.rotate(Math.toRadians(turn),locX, locY);
+		g2d.rotate(Math.toRadians(turn),locX+width/2, locY+height/2);
 		g2d.drawImage(sprite, (int)locX, (int)locY, null);
 	}
+	
 
 	public float getLocX() {
 		return locX;

@@ -18,7 +18,8 @@ public class Game implements Runnable{
 	private boolean down = false;
 	private boolean right = false;
 	private boolean left = false;
-	
+	private boolean shift = false;
+
 	public Game() {
 		jf = new JFrame("RoadRace");
 		new Window((int)width+1, (int)height+1,"RoadRace", jf);
@@ -43,42 +44,72 @@ public class Game implements Runnable{
 				int t = c.getTurn();
 				float value = 0;
 				if (this.isUp()) {
-					if(t <= 90) {
-						if(t<0) {
-							c.setTurn(360);
+					if(!this.isDown()) {
+						if(t <= 90) {
+							if(t<0) {
+								c.setTurn(360);
+							}
+							if(!this.isShift()) {
+								for (int i = 0; i< t; i++) {
+									value += 0.055555555;
+								}
+								c.setLocX(x+5-value);
+								c.setLocY(y+value);
+							}
+							else if(this.isShift() && this.isRight()){
+								c.setTurn(t+3);
+								c.setLocX(x+3);
+								c.setLocY(y+1);
+							}
 						}
-						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+						if(t <= 180 && t > 90) {
+							if(!this.isShift()) {
+								for (int i = 0; i< t; i++) {
+									value += 0.055555555;
+								}
+								value -= 5;
+								c.setLocX(x-value);
+								c.setLocY(y+5-value);
+							}
+							else if(this.isShift() && this.isRight()){
+								c.setTurn(t+3);
+								c.setLocX(x-1);
+								c.setLocY(y+3);
+							}
 						}
-						c.setLocX(x+5-value);
-						c.setLocY(y+value);
-					}
-					if(t <= 180 && t > 90) {
-						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+						if(t <= 270 && t > 180) {
+							if(!this.isShift()) {
+								for (int i = 0; i< t; i++) {
+									value += 0.055555555;
+								}
+								value -= 10;
+								c.setLocX(x-5+value);
+								c.setLocY(y-value);
+							}
+							else if(this.isShift() && this.isRight()){
+								c.setTurn(t+3);
+								c.setLocX(x-3);
+								c.setLocY(y-1);
+							}
 						}
-						value -= 5;
-						c.setLocX(x-value);
-						c.setLocY(y+5-value);
-					}
-					if(t <= 270 && t > 180) {
-						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+						if(t > 270) {
+							if(t>360) {
+								c.setTurn(0);
+							}
+							if(!this.isShift()) {
+								for (int i = 0; i< t; i++) {
+									value += 0.055555555;
+								}
+								value -= 15;
+								c.setLocX(x+value);
+								c.setLocY(y-5+value);
+							}
+							else if(this.isShift() && this.isRight()){
+								c.setTurn(t+3);
+								c.setLocX(x+1);
+								c.setLocY(y-3);
+							}
 						}
-						value -= 10;
-						c.setLocX(x-5+value);
-						c.setLocY(y-value);
-					}
-					if(t > 270) {
-						if(t>360) {
-							c.setTurn(0);
-						}
-						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
-						}
-						value -= 15;
-						c.setLocX(x+value);
-						c.setLocY(y-5+value);	
 					}
 				}
 				if (this.isDown()) {
@@ -87,25 +118,25 @@ public class Game implements Runnable{
 							c.setTurn(360);
 						}
 						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+							value += 0.011111111;
 						}
-						c.setLocX(x-5+value);
+						c.setLocX(x-1+value);
 						c.setLocY(y-value);
 					}
 					if(t <= 180 && t > 90) {
 						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+							value += 0.011111111;
 						}
-						value -= 5;
+						value -= 1;
 						c.setLocX(x+value);
-						c.setLocY(y-5+value);
+						c.setLocY(y-1+value);
 					}
 					if(t <= 270 && t > 180) {
 						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+							value += 0.011111111;
 						}
-						value -= 10;
-						c.setLocX(x+5-value);
+						value -= 2;
+						c.setLocX(x+1-value);
 						c.setLocY(y+value);
 					}
 					if(t > 270) {
@@ -113,29 +144,33 @@ public class Game implements Runnable{
 							c.setTurn(0);
 						}
 						for (int i = 0; i< t; i++) {
-							value += 0.055555555;
+							value += 0.011111111;
 						}
-						value -= 15;
+						value -= 3;
 						c.setLocX(x-value);
-						c.setLocY(y+5-value);
+						c.setLocY(y+1-value);
 					}
 				}
-				if (this.isRight()) {
-					c.setTurn(t+2);
-					if(t<0) {
-						c.setTurn(360);
-					}
-					if(t>360) {
-						c.setTurn(0);
+				if (this.isRight() && !this.isShift()) {
+					if(this.isDown() || this.isUp()) {
+						c.setTurn(t+2);
+						if(t<0) {
+							c.setTurn(360);
+						}
+						if(t>360) {
+							c.setTurn(0);
+						}
 					}
 				}
 				if (this.isLeft()) {
-					c.setTurn(t-2);
-					if(t<0) {
-						c.setTurn(360);
-					}
-					if(t>360) {
-						c.setTurn(0);
+					if(this.isDown() || this.isUp()) {
+						c.setTurn(t-2);
+						if(t<0) {
+							c.setTurn(360);
+						}
+						if(t>360) {
+							c.setTurn(0);
+						}
 					}
 				}
 				Thread.sleep(10); //100x per second
@@ -146,6 +181,14 @@ public class Game implements Runnable{
 				e.printStackTrace();
 			}
 		}
+	}
+	
+	public boolean isShift() {
+		return shift;
+	}
+
+	public void setShift(boolean shift) {
+		this.shift = shift;
 	}
 	
 	public void startGame() {
