@@ -11,6 +11,8 @@ public class Car extends JPanel {
 	private Image sprite;
 	private float locX;
 	private float locY;
+
+
 	private int turn = 0;
 	private int width = 56;
 	private int height = 24;
@@ -60,6 +62,7 @@ public class Car extends JPanel {
 	public Rectangle getHitBox() {
 		return new Rectangle((int) locX+height/2, (int) locY, height, height);
 	}
+	
 
 	public float getLocX() {
 		return locX;
