@@ -16,7 +16,7 @@ public class Menu extends JFrame{
 
 
 
-	public Menu (int width, int height, Game g) {
+	public Menu (int width, int height) {
 		this.width=width;
 		this.height=height;
 		this.setSize(width, height);
@@ -26,12 +26,12 @@ public class Menu extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BackgroundMenu bm = new BackgroundMenu();
 		bm.setLayout(null);
-		addButtons(bm,g);
+		addButtons(bm);
 		this.add(bm);
 	}
 	
 	
-	public void addButtons(JPanel panel,Game g) {
+	public void addButtons(JPanel panel) {
 		JButton button = new JButton("Starte");
 		button.setSize(100,50);
 		button.setLocation(450,308);

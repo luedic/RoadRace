@@ -55,10 +55,15 @@ public class Game implements Runnable{
 			}
 		}
 	}
-
-	public static void main(String[] args) {
+	
+	public void startGame() {
 		Game g = new Game();
-		Menu m = new Menu(1000,666,g);	
+		g.run();
+	}
+	
+	public static void main(String[] args) {
+		Menu m = new Menu(1000,666);	
+		
 	}
 
 
