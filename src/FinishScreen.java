@@ -17,9 +17,9 @@ public class FinishScreen extends JFrame{
 		this.setTitle("Finish");
 		this.setVisible(true);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel lb = new JLabel();
-		this.setLayout(new BorderLayout());
 		this.add(lb,BorderLayout.NORTH);
 		String s = "Du hast "+score+" Sekunde(n) gebraucht";
 		lb.setText(s);
