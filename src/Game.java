@@ -27,7 +27,7 @@ public class Game implements Runnable{
 		jf.setFocusable(true);
 		jf.setVisible(true);
 	}
-	
+
 	public void run() {
 //		JFrame jaf = new JFrame();
 //		jaf.setSize(500, 500);
@@ -62,6 +62,11 @@ public class Game implements Runnable{
 								c.setLocX(x+3);
 								c.setLocY(y+1);
 							}
+							else if(this.isShift() && this.isLeft()){
+								c.setTurn(t-3);
+								c.setLocX(x+1);
+								c.setLocY(y+3);
+							}
 						}
 						if(t <= 180 && t > 90) {
 							if(!this.isShift()) {
@@ -77,6 +82,11 @@ public class Game implements Runnable{
 								c.setLocX(x-1);
 								c.setLocY(y+3);
 							}
+							else if(this.isShift() && this.isLeft()){
+								c.setTurn(t-3);
+								c.setLocX(x-3);
+								c.setLocY(y+1);
+							}
 						}
 						if(t <= 270 && t > 180) {
 							if(!this.isShift()) {
@@ -91,6 +101,11 @@ public class Game implements Runnable{
 								c.setTurn(t+3);
 								c.setLocX(x-3);
 								c.setLocY(y-1);
+							}
+							else if(this.isShift() && this.isLeft()){ //IST GUT
+								c.setTurn(t-3);
+								c.setLocX(x-1);
+								c.setLocY(y-3);
 							}
 						}
 						if(t > 270) {
@@ -109,6 +124,11 @@ public class Game implements Runnable{
 								c.setTurn(t+3);
 								c.setLocX(x+1);
 								c.setLocY(y-3);
+							}
+							else if(this.isShift() && this.isLeft()){
+								c.setTurn(t-3);
+								c.setLocX(x+3);
+								c.setLocY(y-1);
 							}
 						}
 					}
@@ -163,7 +183,7 @@ public class Game implements Runnable{
 						}
 					}
 				}
-				if (this.isLeft()) {
+				if (this.isLeft() && !this.isShift()) {
 					if(this.isDown() || this.isUp()) {
 						c.setTurn(t-2);
 						if(t<0) {

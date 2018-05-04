@@ -33,7 +33,6 @@ public class Car extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponents(g2d);
-		System.out.println("test");
 		ImageIcon ic = new ImageIcon("images/TestStrecke2.png");
 		Image bg = ic.getImage();
 		g.drawImage(bg, 0, 0, null);
@@ -50,9 +49,7 @@ public class Car extends JPanel {
 			for (Rectangle wall : arrayWall) {
 				if(wall!=null) {
 					if (hitBox.intersects(wall)) {
-						System.out.println("KOLLLLLISSSSSIIIIONNNNNNNNN");
 					} else {
-						System.out.println("NOOOOOOOOOOOOOOOOOOOOOO KOLLLLLLLIIIIIIIIIISSSSSSSSSIIIIION");
 					}
 				}
 			}

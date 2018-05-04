@@ -9,7 +9,6 @@ public class BackgroundMenu extends JPanel{
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
-		System.out.println("test");
 		ImageIcon i = new ImageIcon("images/background.png");
 		bg = i.getImage();
 		g.drawImage(bg, 0, 0, 1000,666, null);
