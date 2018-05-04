@@ -11,6 +11,7 @@ public class Car extends JPanel {
 	private Image sprite;
 	private float locX;
 	private float locY;
+	private String carLink;
 
 
 	private int turn = 0;
@@ -33,10 +34,10 @@ public class Car extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponents(g2d);
-		ImageIcon ic = new ImageIcon("images/TestStrecke2.png");
+		ImageIcon ic = new ImageIcon("images/SummerInMonaco.png");
 		Image bg = ic.getImage();
 		g.drawImage(bg, 0, 0, null);
-		ImageIcon i = new ImageIcon("images/mercedes.png");
+		ImageIcon i = new ImageIcon(carLink);
 		sprite = i.getImage();
 		g.drawRect((int) locX+height/2, (int) locY, height, height);
 		g2d.rotate(Math.toRadians(turn), locX+width/2, locY+height/2);
@@ -59,7 +60,13 @@ public class Car extends JPanel {
 	public Rectangle getHitBox() {
 		return new Rectangle((int) locX-height, (int) locY, height, height);
 	}
-	
+
+	public String getCarLink() {
+		return carLink;
+	}
+	public void setCarLink(String carLink) {
+		this.carLink = carLink;
+	}
 
 	public float getLocX() {
 		return locX;

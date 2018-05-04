@@ -5,6 +5,7 @@ import javax.swing.JButton;
 
 public class ButtonListener implements ActionListener {
 	Menu menu;
+	Car car;
 	
 	public ButtonListener(Menu m) {
 		menu = m;
@@ -14,9 +15,17 @@ public class ButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Starte")) {
 			menu.dispose();
-			Game game = new Game();
-			Thread t = new Thread(game);
-			t.start();
+			ChooseCar choose = new ChooseCar();
+//			Game game = new Game();
+//			Thread t = new Thread(game);
+//			t.start();
+		}
+		if (e.getActionCommand().equals("0")){
+//			car.setCarLink();
+			
+		}
+		if (e.getActionCommand().equals("1")){
+			
 		}
 	}
 }

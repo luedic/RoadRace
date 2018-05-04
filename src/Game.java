@@ -194,7 +194,7 @@ public class Game implements Runnable{
 						}
 					}
 				}
-				Thread.sleep(10); //100x per second
+				Thread.sleep(7); //100x per second
 				cam.setCamera(c,jf);
 				c.checkColision();
 				jf.repaint();
