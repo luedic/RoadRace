@@ -10,7 +10,7 @@ public class BackgroundWindow extends JPanel{
 	public void paintComponent(Graphics g) {
 		super.paintComponents(g);
 		System.out.println("test");
-		ImageIcon i = new ImageIcon("images/TestStrecke.png");
+		ImageIcon i = new ImageIcon("images/SummerInMonaco.png");
 		bg = i.getImage();
 		g.drawImage(bg, 0, 0, null);
 	}

@@ -31,8 +31,7 @@ public class Game implements Runnable {
 		// jaf.setSize(500, 500);
 		// jaf.setVisible(true);
 		// jaf.add(c);
-		Car c = new Car(350, 50);
-		Camera cam = new Camera(0, 0);
+		Car c = new Car(314, 54);
 		StopTimer watch = new StopTimer();
 		BackgroundWindow bw = new BackgroundWindow();
 		jf.add(bw);
@@ -43,8 +42,8 @@ public class Game implements Runnable {
 		while (true) { // Gameloop
 			try {
 				if (!c.checkCheat()) {
-					c.setLocX(350);
-					c.setLocY(50);
+					c.setLocX(314);
+					c.setLocY(54);
 					c.setTurn(0);
 				}
 				// System.out.println(c.getLocX());
@@ -206,11 +205,8 @@ public class Game implements Runnable {
 						}
 					}
 				}
-				Thread.sleep(7); //100x per second
-				cam.setCamera(c,jf);
 
 				Thread.sleep(10); // 100x per second
-				cam.setCamera(c, jf);
 				c.checkColision();
 				jf.repaint();
 			} catch (InterruptedException e) {

@@ -15,10 +15,9 @@ public class ButtonListener implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getActionCommand().equals("Starte")) {
 			menu.dispose();
-			ChooseCar choose = new ChooseCar();
-//			Game game = new Game();
-//			Thread t = new Thread(game);
-//			t.start();
+			Game game = new Game();
+			Thread t = new Thread(game);
+			t.start();
 		}
 		if (e.getActionCommand().equals("0")){
 //			car.setCarLink();
