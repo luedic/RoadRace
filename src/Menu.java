@@ -23,6 +23,7 @@ public class Menu extends JFrame{
 		this.setTitle("Menu");
 		this.setVisible(true);
 		this.setResizable(false);
+		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		BackgroundMenu bm = new BackgroundMenu();
 		bm.setLayout(null);

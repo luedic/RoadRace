@@ -29,7 +29,6 @@ public class ButtonListener implements ActionListener {
 			
 		}
 		if (e.getActionCommand().equals("  ")){
-			
 			Game game = new Game();
 			game.getC().setCarLink(chooseCar.getCars().get(1));
 			Thread t = new Thread(game);
