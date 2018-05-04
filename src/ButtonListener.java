@@ -6,9 +6,13 @@ import javax.swing.JButton;
 public class ButtonListener implements ActionListener {
 	Menu menu;
 	Car car;
+	ChooseCar chooseCar;
 	
 	public ButtonListener(Menu m) {
 		menu = m;
+	}
+	public ButtonListener(ChooseCar c) {
+		chooseCar = c;
 	}
 	
 	@Override
@@ -16,16 +20,21 @@ public class ButtonListener implements ActionListener {
 		if (e.getActionCommand().equals("Starte")) {
 			menu.dispose();
 			ChooseCar choose = new ChooseCar();
-//			Game game = new Game();
-//			Thread t = new Thread(game);
-//			t.start();
-		}
-		if (e.getActionCommand().equals("0")){
-//			car.setCarLink();
 			
 		}
-		if (e.getActionCommand().equals("1")){
+		if (e.getActionCommand().equals(" ")){
+			Game game = new Game();
+			game.getC().setCarLink(chooseCar.getCars().get(0));
+			Thread t = new Thread(game);
+			t.start();
 			
+		}
+		if (e.getActionCommand().equals("  ")){
+			
+			Game game = new Game();
+			game.getC().setCarLink(chooseCar.getCars().get(1));
+			Thread t = new Thread(game);
+			t.start();
 		}
 	}
 }
