@@ -43,7 +43,7 @@ public class Car extends JPanel {
 		ImageIcon ic = new ImageIcon("images/SummerInMonaco.png");
 		Image bg = ic.getImage();
 		g.drawImage(bg, 0, 0, null);
-		ImageIcon i = new ImageIcon("images/mercedes.png");
+		ImageIcon i = new ImageIcon(carLink);
 		sprite = i.getImage();
 		g2d.rotate(Math.toRadians(turn), locX + width / 2, locY + height / 2);
 		g2d.drawImage(sprite, (int) locX, (int) locY, null);
