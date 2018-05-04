@@ -14,11 +14,12 @@ public class StopTimer {
 		endtime=System.currentTimeMillis();
 	}
 	
-	public long getTimeMillis() {
+	public double getTimeMillis() {
 		return endtime-starttime;
 	}
 	
 	public double getTimeSec() {
-		return getTimeMillis()/1000;
+		return (getTimeMillis()/100)/10;
+		
 	}
 }

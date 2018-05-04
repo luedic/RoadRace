@@ -32,7 +32,6 @@ public class Game implements Runnable {
 		// jaf.setSize(500, 500);
 		// jaf.setVisible(true);
 		// jaf.add(c);
-		Camera cam = new Camera(0, 0);
 		StopTimer watch = new StopTimer();
 		BackgroundWindow bw = new BackgroundWindow();
 		jf.add(bw);
@@ -207,7 +206,6 @@ public class Game implements Runnable {
 					}
 				}
 				Thread.sleep(10); //100x per second
-				cam.setCamera(c,jf);
 
 				c.checkColision();
 				jf.repaint();

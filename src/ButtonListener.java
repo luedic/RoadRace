@@ -20,7 +20,6 @@ public class ButtonListener implements ActionListener {
 		if (e.getActionCommand().equals("Starte")) {
 			menu.dispose();
 			ChooseCar choose = new ChooseCar();
-			
 		}
 		if (e.getActionCommand().equals(" ")){
 			Game game = new Game();
