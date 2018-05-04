@@ -35,80 +35,87 @@ public class Game implements Runnable{
 //		jaf.add(c);
 		Car c = new Car(50,50);
 		Camera cam = new Camera(0,0);
+		StopTimer clock = new StopTimer();
 		BackgroundWindow bw = new BackgroundWindow();
 		jf.add(bw);
 		jf.add(c);
+		clock.start();
 		while (true) { //Gameloop
 			try {
+				if(c.checkWin()) {
+					break;
+				}
 				float x = c.getLocX();
 				float y = c.getLocY();
 				int t = c.getTurn();
 				float value = 0;
 				if (this.isUp()) {
 					if(!this.isDown()) {
-						if(t <= 90) {
-							if(t<0) {
-								c.setTurn(360);
-							}
-							if(!this.isShift()) {
-								for (int i = 0; i< t; i++) {
-									value += 0.055555555;
+						if(c.checkColision()) {
+							if(t <= 90) {
+								if(t<0) {
+									c.setTurn(360);
 								}
-								c.setLocX(x+5-value);
-								c.setLocY(y+value);
-							}
-							else if(this.isShift() && this.isRight()){
-								c.setTurn(t+3);
-								c.setLocX(x+3);
-								c.setLocY(y+1);
-							}
-						}
-						if(t <= 180 && t > 90) {
-							if(!this.isShift()) {
-								for (int i = 0; i< t; i++) {
-									value += 0.055555555;
+								if(!this.isShift()) {
+									for (int i = 0; i< t; i++) {
+										value += 0.055555555;
+									}
+									c.setLocX(x+5-value);
+									c.setLocY(y+value);
 								}
-								value -= 5;
-								c.setLocX(x-value);
-								c.setLocY(y+5-value);
-							}
-							else if(this.isShift() && this.isRight()){
-								c.setTurn(t+3);
-								c.setLocX(x-1);
-								c.setLocY(y+3);
-							}
-						}
-						if(t <= 270 && t > 180) {
-							if(!this.isShift()) {
-								for (int i = 0; i< t; i++) {
-									value += 0.055555555;
+								else if(this.isShift() && this.isRight()){
+									c.setTurn(t+3);
+									c.setLocX(x+3);
+									c.setLocY(y+1);
 								}
-								value -= 10;
-								c.setLocX(x-5+value);
-								c.setLocY(y-value);
 							}
-							else if(this.isShift() && this.isRight()){
-								c.setTurn(t+3);
-								c.setLocX(x-3);
-								c.setLocY(y-1);
-							}
-						}
-						if(t > 270) {
-							if(t>360) {
-								c.setTurn(0);
-							}
-							if(!this.isShift()) {
-								for (int i = 0; i< t; i++) {
-									value += 0.055555555;
+							if(t <= 180 && t > 90) {
+								if(!this.isShift()) {
+									for (int i = 0; i< t; i++) {
+										value += 0.055555555;
+									}
+									value -= 5;
+									c.setLocX(x-value);
+									c.setLocY(y+5-value);
 								}
-								value -= 15;
-								c.setLocX(x+value);
-								c.setLocY(y-5+value);
+								else if(this.isShift() && this.isRight()){
+									c.setTurn(t+3);
+									c.setLocX(x-1);
+									c.setLocY(y+3);
+								}
 							}
-							else if(this.isShift() && this.isRight()){
-								c.setTurn(t+3);
-								c.setLocX(x+1);
-								c.setLocY(y-3);
+							if(t <= 270 && t > 180) {
+								if(!this.isShift()) {
+									for (int i = 0; i< t; i++) {
+										value += 0.055555555;
+									}
+									value -= 10;
+									c.setLocX(x-5+value);
+									c.setLocY(y-value);
+								}
+								else if(this.isShift() && this.isRight()){
+									c.setTurn(t+3);
+									c.setLocX(x-3);
+									c.setLocY(y-1);
+								}
+							}
+							if(t > 270) {
+								if(t>360) {
+									c.setTurn(0);
+								}
+								if(!this.isShift()) {
+									for (int i = 0; i< t; i++) {
+										value += 0.055555555;
+									}
+									value -= 15;
+									c.setLocX(x+value);
+									c.setLocY(y-5+value);
+								}
+								else if(this.isShift() && this.isRight()){
+									c.setTurn(t+3);
+									c.setLocX(x+1);
+									c.setLocY(y-3);
+								}
 							}
 						}
 					}
@@ -152,36 +159,42 @@ public class Game implements Runnable{
 						c.setLocY(y+1-value);
 					}
 				}
-				if (this.isRight() && !this.isShift()) {
-					if(this.isDown() || this.isUp()) {
-						c.setTurn(t+2);
-						if(t<0) {
-							c.setTurn(360);
-						}
-						if(t>360) {
-							c.setTurn(0);
+				if(c.checkColision()) {
+					if (this.isRight() && !this.isShift()) {
+						if(this.isDown() || this.isUp()) {
+							c.setTurn(t+2);
+							if(t<0) {
+								c.setTurn(360);
+							}
+							if(t>360) {
+								c.setTurn(0);
+							}
 						}
 					}
 				}
-				if (this.isLeft()) {
-					if(this.isDown() || this.isUp()) {
-						c.setTurn(t-2);
-						if(t<0) {
-							c.setTurn(360);
-						}
-						if(t>360) {
-							c.setTurn(0);
+				if(c.checkColision()) {
+					if (this.isLeft()) {
+						if(this.isDown() || this.isUp()) {
+							c.setTurn(t-2);
+							if(t<0) {
+								c.setTurn(360);
+							}
+							if(t>360) {
+								c.setTurn(0);
+							}
 						}
 					}
 				}
 				Thread.sleep(10); //100x per second
 				cam.setCamera(c,jf);
-				c.checkColision();
 				jf.repaint();
+				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+		clock.stop();
+		System.out.println(clock.getTimeSec());
 	}
 	
 	public boolean isShift() {

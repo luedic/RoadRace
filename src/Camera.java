@@ -27,8 +27,8 @@ public class Camera {
 	public void setCamera(Car c,JFrame jf) {
 		locCamX=c.getLocX()-(jf.getWidth()/2);
 		locCamY=c.getLocY()-(jf.getHeight()/2);
-		System.out.println("X: "+locCamX);
-		System.out.println("Y: "+locCamY);
+//		System.out.println("X: "+locCamX);
+//		System.out.println("Y: "+locCamY);
 //		if (locCamX == 0 && locCamY == 0) {
 //			System.out.println("no error cam");
 //		}

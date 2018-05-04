@@ -11,11 +11,11 @@ public class Car extends JPanel {
 	private Image sprite;
 	private float locX;
 	private float locY;
-
-
 	private int turn = 0;
 	private int width = 56;
 	private int height = 24;
+	
+	
 	Rectangle[] arrayWall = new Rectangle[] { 
 			new Rectangle(147, 181, 568, 39), 
 			new Rectangle(611, 221, 106, 671),
@@ -24,7 +24,10 @@ public class Car extends JPanel {
 			new Rectangle(1274, 205, 353, 58),
 			new Rectangle(23, 432, 418, 64), 
 			new Rectangle(902, 14, 86, 642), 
-			new Rectangle(1426, 502, 488, 54) };
+			new Rectangle(1426, 502, 488, 54),
+			new Rectangle(-1, 0, 1920, 1) };
+	Rectangle finish = new Rectangle(251,35,20,99);
+	int round=0;
 
 	public Car(float locX, float locY) {
 		this.locX = locX;
@@ -33,30 +36,38 @@ public class Car extends JPanel {
 	public void paintComponent(Graphics g) {
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponents(g2d);
-		System.out.println("test");
 		ImageIcon ic = new ImageIcon("images/TestStrecke2.png");
 		Image bg = ic.getImage();
 		g.drawImage(bg, 0, 0, null);
 		ImageIcon i = new ImageIcon("images/mercedes.png");
 		sprite = i.getImage();
-		g.drawRect((int) locX+height/2, (int) locY, height, height);
 		g2d.rotate(Math.toRadians(turn), locX+width/2, locY+height/2);
 		g2d.drawImage(sprite, (int) locX, (int) locY, null);
 	}
 
-	public void checkColision() {
+	public boolean checkColision() {
 		Rectangle hitBox = this.getHitBox();
 		if (arrayWall != null) {
 			for (Rectangle wall : arrayWall) {
 				if(wall!=null) {
 					if (hitBox.intersects(wall)) {
-						System.out.println("KOLLLLLISSSSSIIIIONNNNNNNNN");
-					} else {
-						System.out.println("NOOOOOOOOOOOOOOOOOOOOOO KOLLLLLLLIIIIIIIIIISSSSSSSSSIIIIION");
-					}
+						return false;
+					} 
 				}
 			}
 		}
+		return true;
+	}
+	
+	public boolean checkWin() {
+		Rectangle hitBox = this.getHitBox();
+		if(hitBox.intersects(finish)) {
+			round++;
+			if(round>2) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public Rectangle getHitBox() {
