@@ -1,11 +1,8 @@
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import javax.swing.JFrame;
-
-import javafx.scene.input.KeyEvent;
+import javax.swing.JLabel;
 
 public class Game implements Runnable {
 	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -13,6 +10,7 @@ public class Game implements Runnable {
 	double height = screenSize.getHeight();
 	public JFrame jf;
 	KeyInput ki = new KeyInput(this);
+	JLabel jl = new JLabel();
 
 	private boolean up = false;
 	private boolean down = false;
@@ -33,18 +31,24 @@ public class Game implements Runnable {
 		// jaf.setSize(500, 500);
 		// jaf.setVisible(true);
 		// jaf.add(c);
-		Car c = new Car(50, 50);
+		Car c = new Car(350, 50);
 		Camera cam = new Camera(0, 0);
-		StopTimer watch= new StopTimer();
+		StopTimer watch = new StopTimer();
 		BackgroundWindow bw = new BackgroundWindow();
 		jf.add(bw);
 		jf.add(c);
+		// jf.add(jl);
+		jl.setLocation(0, 0);
 		watch.start();
 		while (true) { // Gameloop
 			try {
-				if(c.checkWin()) {
-					break;
+				if (!c.checkCheat()) {
+					c.setLocX(350);
+					c.setLocY(50);
+					c.setTurn(0);
 				}
+				// System.out.println(c.getLocX());
+				// System.out.println(c.getLocY());
 				float x = c.getLocX();
 				float y = c.getLocY();
 				int t = c.getTurn();
@@ -52,6 +56,9 @@ public class Game implements Runnable {
 				if (this.isUp()) {
 					if (!this.isDown()) {
 						if (c.checkColision()) {
+							if (c.checkWin()) {
+								break;
+							}
 							if (t <= 90) {
 								if (t < 0) {
 									c.setTurn(360);
@@ -133,42 +140,44 @@ public class Game implements Runnable {
 					}
 				}
 				if (this.isDown()) {
-					if (t <= 90) {
-						if (t < 0) {
-							c.setTurn(360);
+					if (c.checkCheatWin()) {
+						if (t <= 90) {
+							if (t < 0) {
+								c.setTurn(360);
+							}
+							for (int i = 0; i < t; i++) {
+								value += 0.011111111;
+							}
+							c.setLocX(x - 1 + value);
+							c.setLocY(y - value);
 						}
-						for (int i = 0; i < t; i++) {
-							value += 0.011111111;
+						if (t <= 180 && t > 90) {
+							for (int i = 0; i < t; i++) {
+								value += 0.011111111;
+							}
+							value -= 1;
+							c.setLocX(x + value);
+							c.setLocY(y - 1 + value);
 						}
-						c.setLocX(x - 1 + value);
-						c.setLocY(y - value);
-					}
-					if (t <= 180 && t > 90) {
-						for (int i = 0; i < t; i++) {
-							value += 0.011111111;
+						if (t <= 270 && t > 180) {
+							for (int i = 0; i < t; i++) {
+								value += 0.011111111;
+							}
+							value -= 2;
+							c.setLocX(x + 1 - value);
+							c.setLocY(y + value);
 						}
-						value -= 1;
-						c.setLocX(x + value);
-						c.setLocY(y - 1 + value);
-					}
-					if (t <= 270 && t > 180) {
-						for (int i = 0; i < t; i++) {
-							value += 0.011111111;
+						if (t > 270) {
+							if (t > 360) {
+								c.setTurn(0);
+							}
+							for (int i = 0; i < t; i++) {
+								value += 0.011111111;
+							}
+							value -= 3;
+							c.setLocX(x - value);
+							c.setLocY(y + 1 - value);
 						}
-						value -= 2;
-						c.setLocX(x + 1 - value);
-						c.setLocY(y + value);
-					}
-					if (t > 270) {
-						if (t > 360) {
-							c.setTurn(0);
-						}
-						for (int i = 0; i < t; i++) {
-							value += 0.011111111;
-						}
-						value -= 3;
-						c.setLocX(x - value);
-						c.setLocY(y + 1 - value);
 					}
 				}
 				if (this.isRight() && !this.isShift()) {
@@ -197,6 +206,7 @@ public class Game implements Runnable {
 						}
 					}
 				}
+
 				Thread.sleep(10); // 100x per second
 				cam.setCamera(c, jf);
 				c.checkColision();
@@ -206,7 +216,13 @@ public class Game implements Runnable {
 			}
 		}
 		watch.stop();
+		jf.dispose();
+		FinishScreen fs = new FinishScreen(1000, 666, watch.getTimeSec());
 		System.out.println(watch.getTimeSec());
+	}
+
+	public static void main(String[] args) {
+		Menu m = new Menu(1000, 666);
 	}
 
 	public boolean isShift() {
@@ -219,11 +235,6 @@ public class Game implements Runnable {
 
 	public void startGame() {
 		this.run();
-	}
-
-	public static void main(String[] args) {
-		Menu m = new Menu(1000, 666);
-
 	}
 
 	public JFrame getJf() {
