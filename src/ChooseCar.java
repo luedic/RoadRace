@@ -27,7 +27,7 @@ public class ChooseCar {
 		for (String car:cars) {
 			ImageIcon i = new ImageIcon(car);
 			JButton j = new JButton(a,i);
-			j.addActionListener(new ButtonListener(this));
+			j.addActionListener(new ButtonListener(this,f));
 			f.add(j);
 			j.setSize(100,50);
 			j.setLocation(z,308);
@@ -35,7 +35,6 @@ public class ChooseCar {
 			a = a + " ";
 		}
 		f.add(bm);
-		
 	}
 	
 	public List<String> getCars() {

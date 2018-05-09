@@ -18,6 +18,7 @@ public class Game implements Runnable {
 	private boolean right = false;
 	private boolean left = false;
 	private boolean shift = false;
+	private boolean r = false;
 
 	public Game() {
 		jf = new JFrame("RoadRace");
@@ -46,8 +47,6 @@ public class Game implements Runnable {
 					c.setLocY(54);
 					c.setTurn(0);
 				}
-				// System.out.println(c.getLocX());
-				// System.out.println(c.getLocY());
 				float x = c.getLocX();
 				float y = c.getLocY();
 				int t = c.getTurn();
@@ -205,6 +204,11 @@ public class Game implements Runnable {
 						}
 					}
 				}
+				if(this.isR()) {
+					c.setLocX(314);
+					c.setLocY(54);
+					c.setTurn(0);
+				}
 				Thread.sleep(10); //100x per second
 
 				c.checkColision();
@@ -216,11 +220,6 @@ public class Game implements Runnable {
 		watch.stop();
 		jf.dispose();
 		FinishScreen fs = new FinishScreen(1000, 666, watch.getTimeSec());
-		System.out.println(watch.getTimeSec());
-	}
-
-	public static void main(String[] args) {
-		Menu m = new Menu(1000, 666);
 	}
 
 	public boolean isShift() {
@@ -285,6 +284,14 @@ public class Game implements Runnable {
 
 	public boolean isLeft() {
 		return left;
+	}
+	
+	public boolean isR() {
+		return r;
+	}
+	
+	public void setR(boolean r) {
+		this.r = r;
 	}
 
 	public void setLeft(boolean left) {

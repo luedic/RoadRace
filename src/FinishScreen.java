@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
@@ -7,7 +8,6 @@ public class FinishScreen extends JFrame{
 	private int width;
 	private int height;
 	
-
 
 
 	public FinishScreen (int width, int height,double score) {
@@ -25,6 +25,9 @@ public class FinishScreen extends JFrame{
 		lb.setText(s);
 		BackgroundMenu bm =new BackgroundMenu();
 		this.add(bm,BorderLayout.CENTER);
+		JButton button = new JButton("Nochmal Spielen");
+		button.addActionListener(new ButtonListener(this));
+		this.add(button,BorderLayout.SOUTH);
 	}
 	
 

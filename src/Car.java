@@ -66,7 +66,6 @@ public class Car extends JPanel {
 	public boolean checkWin() {
 		if (locX >= finishX && locX <= finishX + 4 && locY >= finishY && locY <= finishY + 179) {
 			round++;
-			System.out.println(round);
 			if (round > 1) {
 				return true;
 			}
