@@ -46,84 +46,84 @@ public class Game implements Runnable {
 				float y = c.getLocY();
 				int t = c.getTurn();
 				float value = 0;
-				if (this.isUp()) {
-					if (!this.isDown()) {
-						if (c.checkColision()) {
+				if (this.isUp()) { // if key up is pressed
+					if (!this.isDown()) { //with this you cant press up + down at the same time
+						if (c.checkColision()) { //while there is no collision
 							if (c.checkWin()) {
 								break;
 							}
-							if (t <= 90) {
-								if (t < 0) {
+							if (t <= 90) { //first quarter of the circle (down, right)
+								if (t < 0) { //check to do a full turn else its under 0 and not in any quarter
 									c.setTurn(360);
 								}
-								if (!this.isShift()) {
+								if (!this.isShift()) { //drive straight
 									for (int i = 0; i < t; i++) {
 										value += 0.055555555;
 									}
 									c.setLocX(x + 5 - value);
 									c.setLocY(y + value);
-								} else if (this.isShift() && this.isRight()) {
+								} else if (this.isShift() && this.isRight()) { //drift right
 									c.setTurn(t + 3);
 									c.setLocX(x + 3);
 									c.setLocY(y + 1);
-								} else if (this.isShift() && this.isLeft()) {
+								} else if (this.isShift() && this.isLeft()) { //drift left
 									c.setTurn(t - 3);
 									c.setLocX(x + 1);
 									c.setLocY(y + 3);
 								}
 							}
-							if (t <= 180 && t > 90) {
+							if (t <= 180 && t > 90) { //second quarter of the circle (down, lwft)
 								if (!this.isShift()) {
-									for (int i = 0; i < t; i++) {
+									for (int i = 0; i < t; i++) { //drive straight
 										value += 0.055555555;
 									}
 									value -= 5;
 									c.setLocX(x - value);
 									c.setLocY(y + 5 - value);
-								} else if (this.isShift() && this.isRight()) {
+								} else if (this.isShift() && this.isRight()) { //drift right
 									c.setTurn(t + 3);
 									c.setLocX(x - 1);
 									c.setLocY(y + 3);
-								} else if (this.isShift() && this.isLeft()) {
+								} else if (this.isShift() && this.isLeft()) { //drift left
 									c.setTurn(t - 3);
 									c.setLocX(x - 3);
 									c.setLocY(y + 1);
 								}
 							}
-							if (t <= 270 && t > 180) {
+							if (t <= 270 && t > 180) { //third quarter of the circle (top, left)
 								if (!this.isShift()) {
-									for (int i = 0; i < t; i++) {
+									for (int i = 0; i < t; i++) { //drive straight
 										value += 0.055555555;
 									}
 									value -= 10;
 									c.setLocX(x - 5 + value);
 									c.setLocY(y - value);
-								} else if (this.isShift() && this.isRight()) {
+								} else if (this.isShift() && this.isRight()) { //drift right
 									c.setTurn(t + 3);
 									c.setLocX(x - 3);
 									c.setLocY(y - 1);
-								} else if (this.isShift() && this.isLeft()) { // IST GUT
+								} else if (this.isShift() && this.isLeft()) { //drift left
 									c.setTurn(t - 3);
 									c.setLocX(x - 1);
 									c.setLocY(y - 3);
 								}
 							}
-							if (t > 270) {
-								if (t > 360) {
+							if (t > 270) { //fourth quarter of the circle (top, right)
+								if (t > 360) { //check to do a full turn else its over 360 and not in any quarter
 									c.setTurn(0);
 								}
 								if (!this.isShift()) {
-									for (int i = 0; i < t; i++) {
+									for (int i = 0; i < t; i++) { //drive straight
 										value += 0.055555555;
 									}
 									value -= 15;
 									c.setLocX(x + value);
 									c.setLocY(y - 5 + value);
-								} else if (this.isShift() && this.isRight()) {
+								} else if (this.isShift() && this.isRight()) { //drift right
 									c.setTurn(t + 3);
 									c.setLocX(x + 1);
 									c.setLocY(y - 3);
-								} else if (this.isShift() && this.isLeft()) {
+								} else if (this.isShift() && this.isLeft()) { //drift left
 									c.setTurn(t - 3);
 									c.setLocX(x + 3);
 									c.setLocY(y - 1);
@@ -132,20 +132,20 @@ public class Game implements Runnable {
 						}
 					}
 				}
-				if (this.isDown()) {
+				if (this.isDown()) { //if key down is pressed
 					if (c.checkCheatWin()) {
 						if (t <= 90) {
-							if (t < 0) {
+							if (t < 0) { //check to do a full turn else its under 0 and not in any quarter
 								c.setTurn(360);
 							}
-							for (int i = 0; i < t; i++) {
+							for (int i = 0; i < t; i++) { //drive backwards
 								value += 0.011111111;
 							}
 							c.setLocX(x - 1 + value);
 							c.setLocY(y - value);
 						}
 						if (t <= 180 && t > 90) {
-							for (int i = 0; i < t; i++) {
+							for (int i = 0; i < t; i++) { //drive backwards
 								value += 0.011111111;
 							}
 							value -= 1;
@@ -153,7 +153,7 @@ public class Game implements Runnable {
 							c.setLocY(y - 1 + value);
 						}
 						if (t <= 270 && t > 180) {
-							for (int i = 0; i < t; i++) {
+							for (int i = 0; i < t; i++) { //drive backwards
 								value += 0.011111111;
 							}
 							value -= 2;
@@ -161,10 +161,10 @@ public class Game implements Runnable {
 							c.setLocY(y + value);
 						}
 						if (t > 270) {
-							if (t > 360) {
+							if (t > 360) { //check to do a full turn else its over 360 and not in any quarter
 								c.setTurn(0);
 							}
-							for (int i = 0; i < t; i++) {
+							for (int i = 0; i < t; i++) { //drive backwards
 								value += 0.011111111;
 							}
 							value -= 3;
@@ -172,7 +172,7 @@ public class Game implements Runnable {
 							c.setLocY(y + 1 - value);
 						}
 					}
-				}
+				} // if key right is pressed
 				if (this.isRight() && !this.isShift()) {
 					if (c.checkColision()) {
 						if (this.isDown() || this.isUp()) {
@@ -185,7 +185,7 @@ public class Game implements Runnable {
 							}
 						}
 					}
-				}
+				} // if key left is pressed
 				if (this.isLeft() && !this.isShift()) {
 					if (c.checkColision()) {
 						if (this.isDown() || this.isUp()) {
