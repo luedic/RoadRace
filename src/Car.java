@@ -19,24 +19,24 @@ public class Car extends JPanel {
 	int finishY = 0;
 	int round = 0;
 	
-	Rectangle[] arrayWall = new Rectangle[] { new Rectangle(147, 181, 568, 39), new Rectangle(611, 221, 106, 671),
+	Rectangle[] arrayWall = new Rectangle[] { new Rectangle(147, 181, 568, 39), new Rectangle(611, 221, 106, 671),//Hitbox Walls
 			new Rectangle(720, 812, 711, 87), new Rectangle(1197, 194, 74, 604), new Rectangle(1274, 205, 353, 58),
 			new Rectangle(23, 432, 418, 64), new Rectangle(902, 14, 86, 642), new Rectangle(1426, 502, 488, 54),
 			new Rectangle(-1, 0, 1920, 1), new Rectangle(-1, 0, 1, 1080), new Rectangle(0, 1080, 1920, 1),
 			new Rectangle(1920, 0, 1, 1080) };
-	Rectangle[] arrayCheatWall = new Rectangle[] { new Rectangle(156, 186, 546, 29), new Rectangle(621, 225, 75, 666),
+	Rectangle[] arrayCheatWall = new Rectangle[] { new Rectangle(156, 186, 546, 29), new Rectangle(621, 225, 75, 656),//Hitbox Anti Cheat Walls
 			new Rectangle(730, 820, 691, 67), new Rectangle(1207, 199, 54, 594), new Rectangle(1284, 210, 333, 5),
 			new Rectangle(33, 437, 398, 36), new Rectangle(912, 19, 66, 625), new Rectangle(1436, 507, 468, 49),
 			new Rectangle(0, -6, 1920, 1), new Rectangle(-6, 0, 1, 1080), new Rectangle(0, 1085, 1920, 1),
 			new Rectangle(1925, 0, 1, 1080) };
 
 
-	public Car(float locX, float locY) {
+	public Car(float locX, float locY) {//Construtor
 		this.locX = locX;
 		this.locY = locY;
 	}
 
-	public void paintComponent(Graphics g) {
+	public void paintComponent(Graphics g) {//painting car and Background
 		Graphics2D g2d = (Graphics2D) g;
 		super.paintComponents(g2d);
 		ImageIcon ic = new ImageIcon("images/SummerInMonaco.png");
@@ -48,7 +48,7 @@ public class Car extends JPanel {
 		g2d.drawImage(sprite, (int) locX, (int) locY, null);
 	}
 
-	public boolean checkColision() {
+	public boolean checkColision() {//false = Hit
 		Rectangle hitBox = this.getHitBox();
 		if (arrayWall != null) {
 			for (Rectangle wall : arrayWall) {
@@ -62,11 +62,11 @@ public class Car extends JPanel {
 		return true;
 	}
 
-	public boolean checkWin() {
+	public boolean checkWin() {//true = win
 		if (locX >= finishX && locX <= finishX + 4 && locY >= finishY && locY <= finishY + 179) {
 			round++;
 			System.out.println(round);
-			if (round > 2) {
+			if (round > 2) {//if 
 				return true;
 			}
 		}

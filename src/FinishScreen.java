@@ -21,7 +21,7 @@ public class FinishScreen extends JFrame{
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JLabel lb = new JLabel();
 		this.add(lb,BorderLayout.NORTH);
-		String s = "Du hast "+score+" Sekunde(n) gebraucht";
+		String s = "Du hast "+score+" Sekunden gebraucht";
 		lb.setText(s);
 		BackgroundMenu bm =new BackgroundMenu();
 		this.add(bm,BorderLayout.CENTER);
