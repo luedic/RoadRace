@@ -27,6 +27,9 @@ public class KeyInput extends KeyAdapter{
 		if (key == KeyEvent.VK_SHIFT) {
 			game.setShift(true);
 		}
+		if (key == KeyEvent.VK_R) {
+			game.setR(true);
+		}
 	}
 	public void keyReleased(KeyEvent e) {
 		int key = e.getKeyCode();
@@ -44,6 +47,9 @@ public class KeyInput extends KeyAdapter{
 		}
 		if (key == KeyEvent.VK_SHIFT) {
 			game.setShift(false);
+		}
+		if (key == KeyEvent.VK_R) {
+			game.setR(false);
 		}
 	}
 }
