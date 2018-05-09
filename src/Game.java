@@ -28,15 +28,10 @@ public class Game implements Runnable {
 	}
 
 	public void run() {
-		// JFrame jaf = new JFrame();
-		// jaf.setSize(500, 500);
-		// jaf.setVisible(true);
-		// jaf.add(c);
 		StopTimer watch = new StopTimer();
 		BackgroundWindow bw = new BackgroundWindow();
 		jf.add(bw);
 		jf.add(c);
-		// jf.add(jl);
 		jl.setLocation(0, 0);
 		watch.start();
 		while (true) { // Gameloop
@@ -46,8 +41,6 @@ public class Game implements Runnable {
 					c.setLocY(54);
 					c.setTurn(0);
 				}
-				// System.out.println(c.getLocX());
-				// System.out.println(c.getLocY());
 				float x = c.getLocX();
 				float y = c.getLocY();
 				int t = c.getTurn();
@@ -205,7 +198,7 @@ public class Game implements Runnable {
 						}
 					}
 				}
-				Thread.sleep(10); //100x per second
+				Thread.sleep(9); //100x per second
 
 				c.checkColision();
 				jf.repaint();

@@ -9,15 +9,16 @@ import javax.swing.JPanel;
 
 public class Car extends JPanel {
 	private Image sprite;
+	private String carLink;
 	private float locX;
 	private float locY;
-	private String carLink;
-
-
 	private int turn = 0;
 	private int width = 56;
 	private int height = 24;
-
+	int finishX = 251;
+	int finishY = 0;
+	int round = 0;
+	
 	Rectangle[] arrayWall = new Rectangle[] { new Rectangle(147, 181, 568, 39), new Rectangle(611, 221, 106, 671),
 			new Rectangle(720, 812, 711, 87), new Rectangle(1197, 194, 74, 604), new Rectangle(1274, 205, 353, 58),
 			new Rectangle(23, 432, 418, 64), new Rectangle(902, 14, 86, 642), new Rectangle(1426, 502, 488, 54),
@@ -28,9 +29,7 @@ public class Car extends JPanel {
 			new Rectangle(33, 437, 398, 36), new Rectangle(912, 19, 66, 625), new Rectangle(1436, 507, 468, 49),
 			new Rectangle(0, -6, 1920, 1), new Rectangle(-6, 0, 1, 1080), new Rectangle(0, 1085, 1920, 1),
 			new Rectangle(1925, 0, 1, 1080) };
-	int finishX = 251;
-	int finishY = 0;
-	int round = 0;
+
 
 	public Car(float locX, float locY) {
 		this.locX = locX;
@@ -67,7 +66,7 @@ public class Car extends JPanel {
 		if (locX >= finishX && locX <= finishX + 4 && locY >= finishY && locY <= finishY + 179) {
 			round++;
 			System.out.println(round);
-			if (round > 1) {
+			if (round > 2) {
 				return true;
 			}
 		}
